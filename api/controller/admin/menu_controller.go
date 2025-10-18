@@ -82,7 +82,7 @@ func (c *MenuController) Create(ctx *gin.Context) {
 		Perms:     param.Perms,
 		Icon:      param.Icon,
 		Status:    param.Status,
-		CreateBy:  user.(dto.UserTokenResponse).UserName,
+		CreateBy:  user.(*dto.UserTokenResponse).UserName,
 	}); err != nil {
 		response.Error(ctx).SetMsg(err.Error()).Json()
 		return
@@ -118,7 +118,7 @@ func (c *MenuController) Update(ctx *gin.Context) {
 		Perms:     param.Perms,
 		Icon:      param.Icon,
 		Status:    param.Status,
-		UpdateBy:  user.(dto.UserTokenResponse).UserName,
+		UpdateBy:  user.(*dto.UserTokenResponse).UserName,
 	}); err != nil {
 		response.Error(ctx).SetMsg(err.Error()).Json()
 		return

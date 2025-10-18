@@ -39,14 +39,17 @@ func OperLogMiddleware(title string, businessType int) gin.HandlerFunc {
 			ResponseWriter: ctx.Writer,
 			Body:           bytes.NewBufferString(""),
 		}
-		param := make(map[string]interface{}, 0)
+		param := make(map[string]interface{})
 		err := ctx.ShouldBind(&param)
 		if err != nil {
-			log.Fatal(err)
-			return
+			err = json.Unmarshal(bodyBytes, &param)
+			if err != nil {
+				log.Println(err)
+			}
+		} else {
+			// 因ctx.ShouldBind后，请求体的数据流会被消耗完毕，需要将缓存的请求体重新赋值给ctx.Request.Body
+			ctx.Request.Body = io.NopCloser(bytes.NewBuffer(bodyBytes))
 		}
-		// 因ctx.ShouldBind后，请求体的数据流会被消耗完毕，需要将缓存的请求体重新赋值给ctx.Request.Body
-		ctx.Request.Body = io.NopCloser(bytes.NewBuffer(bodyBytes))
 		// 将query参数转为map并添加到请求参数中，用query-key的形式以便区分
 		for key, value := range ctx.Request.URL.Query() {
 			param[key] = value
@@ -72,13 +75,18 @@ func OperLogMiddleware(title string, businessType int) gin.HandlerFunc {
 		}
 		ctx.Writer = rw
 		ctx.Next()
-		sysOperLog.JsonResult = rw.Body.String()
 		// 解析响应
 		var body response.Response
-		err = json.Unmarshal(rw.Body.Bytes(), &body)
-		if err != nil || body.Code != 200 {
-			sysOperLog.Status = "1"
-			sysOperLog.ErrorMsg = body.Msg
+		if ctx.Request.Header.Get("Content-Type") == "application/json" {
+			sysOperLog.JsonResult = rw.Body.String()
+			err = json.Unmarshal(rw.Body.Bytes(), &body)
+			if err != nil || body.Code != 200 {
+				sysOperLog.Status = "1"
+				sysOperLog.ErrorMsg = body.Msg
+			}
+		} else {
+			sysOperLog.Status = "0"
+			sysOperLog.ErrorMsg = "OK"
 		}
 		duration := time.Since(requestStartTime)
 		sysOperLog.CostTime = int(duration.Milliseconds())

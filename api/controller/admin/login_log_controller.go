@@ -41,8 +41,8 @@ func (c *LoginLogController) List(ctx *gin.Context) {
 		param.OrderByColumn = "loginTime"
 	}
 	param.OrderByColumn = strings.ToLower(regexp.MustCompile("([A-Z])").ReplaceAllString(param.OrderByColumn, "_${1}"))
-	logininfors, total := c.loginLogService.List(param, true)
-	response.Success(ctx).SetPageData(logininfors, total).Json()
+	loginLogs, total := c.loginLogService.List(param, true)
+	response.Success(ctx).SetPageData(loginLogs, total).Json()
 }
 
 // Delete 删除登录日志
@@ -96,18 +96,18 @@ func (c *LoginLogController) Export(ctx *gin.Context) {
 	}
 	param.OrderByColumn = strings.ToLower(regexp.MustCompile("([A-Z])").ReplaceAllString(param.OrderByColumn, "_${1}"))
 	list := make([]dto.LoginLogExportResponse, 0)
-	logininfors, _ := c.loginLogService.List(param, false)
-	for _, logininfor := range logininfors {
+	loginLogs, _ := c.loginLogService.List(param, false)
+	for _, loginLog := range loginLogs {
 		list = append(list, dto.LoginLogExportResponse{
-			InfoId:        logininfor.InfoId,
-			UserName:      logininfor.UserName,
-			Status:        logininfor.Status,
-			Ipaddr:        logininfor.Ipaddr,
-			LoginLocation: logininfor.LoginLocation,
-			Browser:       logininfor.Browser,
-			Os:            logininfor.Os,
-			Msg:           logininfor.Msg,
-			LoginTime:     logininfor.LoginTime.Format(datetime.DATETIME_FORMAT0),
+			InfoId:        loginLog.InfoId,
+			UserName:      loginLog.UserName,
+			Status:        loginLog.Status,
+			Ipaddr:        loginLog.Ipaddr,
+			LoginLocation: loginLog.LoginLocation,
+			Browser:       loginLog.Browser,
+			Os:            loginLog.Os,
+			Msg:           loginLog.Msg,
+			LoginTime:     loginLog.LoginTime.Format(datetime.DATETIME_FORMAT0),
 		})
 	}
 	file, err := excel.NormalDynamicExport("Sheet1", "", "", false, false, list, nil)
@@ -115,5 +115,5 @@ func (c *LoginLogController) Export(ctx *gin.Context) {
 		response.Error(ctx).SetMsg(err.Error()).Json()
 		return
 	}
-	excel.DownLoadExcel("logininfor_"+time.Now().Format(datetime.DATETIME_FORMAT2), ctx.Writer, file)
+	excel.DownLoadExcel("login_log_"+time.Now().Format(datetime.DATETIME_FORMAT2), ctx.Writer, file)
 }

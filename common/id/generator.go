@@ -9,7 +9,7 @@ import (
 func Gen(key int64) (int64, error) {
 	node, err := snowflake.NewNode(key)
 	if err != nil {
-		log.Fatal(err)
+		log.Println(err)
 		return -1, err
 	}
 	return node.Generate().Int64(), nil

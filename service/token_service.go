@@ -13,6 +13,7 @@ import (
 	"time"
 
 	"github.com/gin-gonic/gin"
+	"github.com/go-redis/redis/v8"
 	"github.com/golang-jwt/jwt/v4"
 )
 
@@ -21,6 +22,7 @@ type TokenService struct {
 	jwt.RegisteredClaims
 	Key     string `json:"key"`
 	Setting *config.Setting
+	Cache   *redis.Client
 }
 
 // NewTokenService 获取授权声明
@@ -35,6 +37,7 @@ func NewTokenService() *TokenService {
 			Issuer:    conf.System.Name,               // 签发人
 		},
 		Setting: conf,
+		Cache:   connector.GetCache(),
 	}
 }
 
@@ -46,7 +49,7 @@ func (s *TokenService) Create(user *dto.UserTokenResponse) (string, error) {
 	}
 	expireTime := time.Minute * time.Duration(s.Setting.Auth.Token.ExpireIn)
 	user.ExpireTime = datetime.Datetime{Time: time.Now().Add(expireTime)}
-	err = connector.GetCache().Set(context.Background(), redis_key.UserTokenKey+s.Key, user, expireTime).Err()
+	err = s.Cache.Set(context.Background(), redis_key.UserTokenKey+s.Key, user, expireTime).Err()
 	if err != nil {
 		return "", err
 	}
@@ -61,7 +64,7 @@ func (s *TokenService) Refresh(ctx *gin.Context, user *dto.UserTokenResponse) {
 	}
 	expireTime := time.Minute * time.Duration(s.Setting.Auth.Token.ExpireIn)
 	user.ExpireTime = datetime.Datetime{Time: time.Now().Add(expireTime)}
-	connector.GetCache().Set(ctx.Request.Context(), tokenKey, user, time.Minute*time.Duration(s.Setting.Auth.Token.ExpireIn))
+	s.Cache.Set(ctx.Request.Context(), tokenKey, user, time.Minute*time.Duration(s.Setting.Auth.Token.ExpireIn))
 }
 
 // Parse 将token解析为用户信息
@@ -70,11 +73,12 @@ func (s *TokenService) Parse(ctx *gin.Context) (*dto.UserTokenResponse, error) {
 	if err != nil {
 		return nil, err
 	}
-	var user *dto.UserTokenResponse
-	if err = connector.GetCache().Get(ctx.Request.Context(), tokenKey).Scan(user); err != nil {
+	var user dto.UserTokenResponse
+	// &user取的是dto.UserTokenResponse指针类型对应变量的地址
+	if err = s.Cache.Get(ctx.Request.Context(), tokenKey).Scan(&user); err != nil {
 		return nil, err
 	}
-	return user, nil
+	return &user, nil
 }
 
 // Delete 删除token
@@ -83,7 +87,7 @@ func (s *TokenService) Delete(ctx *gin.Context) error {
 	if err != nil {
 		return err
 	}
-	return connector.GetCache().Del(ctx.Request.Context(), tokenKey).Err()
+	return s.Cache.Del(ctx.Request.Context(), tokenKey).Err()
 }
 
 // 获取授权用户的token key

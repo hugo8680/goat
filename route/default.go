@@ -53,7 +53,7 @@ func DefaultRoutes() []framework.RouteGroup {
 					Function:     admin.NewAuthController().Login,
 				},
 				{
-					Method:       "POST",
+					Method:       "GET",
 					RelativePath: "/logout",
 					Function:     admin.NewAuthController().Logout,
 				},
@@ -367,7 +367,7 @@ func DefaultRoutes() []framework.RouteGroup {
 						middleware.PermissionCheckMiddleware("system:menu:edit"),
 						middleware.OperLogMiddleware("修改菜单", log_request_type.REQUEST_BUSINESS_TYPE_UPDATE),
 					},
-					Function: admin.NewRoleController().Update,
+					Function: admin.NewMenuController().Update,
 				},
 				{
 					Method:       "DELETE",
@@ -672,79 +672,79 @@ func DefaultRoutes() []framework.RouteGroup {
 				},
 				{
 					Method:       "GET",
-					RelativePath: "/monitor/logininfor/list",
+					RelativePath: "/system/loginLog/list",
 					Middlewares: gin.HandlersChain{
-						middleware.PermissionCheckMiddleware("monitor:loginlog:list"),
+						middleware.PermissionCheckMiddleware("system:loginLog:list"),
 					},
 					Function: admin.NewLoginLogController().List,
 				},
 				{
 					Method:       "DELETE",
-					RelativePath: "/monitor/logininfor/:infoIds",
+					RelativePath: "/system/loginLog/:infoIds",
 					Middlewares: gin.HandlersChain{
-						middleware.PermissionCheckMiddleware("monitor:loginlog:remove"),
+						middleware.PermissionCheckMiddleware("system:loginLog:remove"),
 						middleware.OperLogMiddleware("删除登录日志", log_request_type.REQUEST_BUSINESS_TYPE_DELETE),
 					},
 					Function: admin.NewLoginLogController().Delete,
 				},
 				{
 					Method:       "DELETE",
-					RelativePath: "/monitor/logininfor/clean",
+					RelativePath: "/system/loginLog/clean",
 					Middlewares: gin.HandlersChain{
-						middleware.PermissionCheckMiddleware("monitor:loginlog:remove"),
+						middleware.PermissionCheckMiddleware("system:loginLog:remove"),
 						middleware.OperLogMiddleware("清空登录日志", log_request_type.REQUEST_BUSINESS_TYPE_DELETE),
 					},
 					Function: admin.NewLoginLogController().Clean,
 				},
 				{
 					Method:       "GET",
-					RelativePath: "/monitor/logininfor/unlock/:userName",
+					RelativePath: "/system/loginLog/unlock/:userName",
 					Middlewares: gin.HandlersChain{
-						middleware.PermissionCheckMiddleware("monitor:loginlog:unlock"),
+						middleware.PermissionCheckMiddleware("system:loginLog:unlock"),
 						middleware.OperLogMiddleware("账户解锁", log_request_type.REQUEST_BUSINESS_TYPE_DELETE),
 					},
 					Function: admin.NewLoginLogController().Unlock,
 				},
 				{
 					Method:       "POST",
-					RelativePath: "/monitor/logininfor/export",
+					RelativePath: "/system/loginLog/export",
 					Middlewares: gin.HandlersChain{
-						middleware.PermissionCheckMiddleware("monitor:loginlog:export"),
+						middleware.PermissionCheckMiddleware("system:loginLog:export"),
 						middleware.OperLogMiddleware("导出登录日志", log_request_type.REQUEST_BUSINESS_TYPE_EXPORT),
 					},
 					Function: admin.NewLoginLogController().Export,
 				},
 				{
 					Method:       "GET",
-					RelativePath: "/monitor/operlog/list",
+					RelativePath: "/system/operlog/list",
 					Middlewares: gin.HandlersChain{
-						middleware.PermissionCheckMiddleware("monitor:operlog:list"),
+						middleware.PermissionCheckMiddleware("system:operlog:list"),
 					},
 					Function: admin.NewOperLogController().List,
 				},
 				{
 					Method:       "DELETE",
-					RelativePath: "/monitor/operlog/:operIds",
+					RelativePath: "/system/operlog/:operIds",
 					Middlewares: gin.HandlersChain{
-						middleware.PermissionCheckMiddleware("monitor:operlog:remove"),
+						middleware.PermissionCheckMiddleware("system:operlog:remove"),
 						middleware.OperLogMiddleware("删除操作日志", log_request_type.REQUEST_BUSINESS_TYPE_DELETE),
 					},
 					Function: admin.NewOperLogController().Delete,
 				},
 				{
 					Method:       "DELETE",
-					RelativePath: "/monitor/operlog/clean",
+					RelativePath: "/system/operlog/clean",
 					Middlewares: gin.HandlersChain{
-						middleware.PermissionCheckMiddleware("monitor:operlog:remove"),
+						middleware.PermissionCheckMiddleware("system:operlog:remove"),
 						middleware.OperLogMiddleware("清空操作日志", log_request_type.REQUEST_BUSINESS_TYPE_DELETE),
 					},
 					Function: admin.NewOperLogController().Clean,
 				},
 				{
 					Method:       "POST",
-					RelativePath: "/monitor/operlog/export",
+					RelativePath: "/system/operlog/export",
 					Middlewares: gin.HandlersChain{
-						middleware.PermissionCheckMiddleware("monitor:operlog:export"),
+						middleware.PermissionCheckMiddleware("system:operlog:export"),
 						middleware.OperLogMiddleware("导出操作日志", log_request_type.REQUEST_BUSINESS_TYPE_EXPORT),
 					},
 					Function: admin.NewOperLogController().Export,

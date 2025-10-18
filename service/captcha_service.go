@@ -11,7 +11,7 @@ type CaptchaService struct {
 
 // NewCaptchaService 构造函数
 func NewCaptchaService() *CaptchaService {
-	driver := base64Captcha.NewDriverDigit(40, 100, 4, 0.7, 1)
+	driver := base64Captcha.NewDriverDigit(40, 120, 4, 0, 8)
 	return &CaptchaService{
 		captcha: base64Captcha.NewCaptcha(driver, &CaptchaStoreService{}),
 	}

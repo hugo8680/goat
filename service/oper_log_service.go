@@ -73,7 +73,7 @@ func (s *OperLogService) Create(param dto.SaveOperLogRequest) error {
 			}).Error
 		}()
 		if err != nil {
-			log.Fatal(err)
+			log.Println(err)
 		}
 	}()
 	return nil

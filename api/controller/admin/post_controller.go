@@ -60,7 +60,7 @@ func (c *PostController) Create(ctx *gin.Context) {
 		PostName: param.PostName,
 		PostSort: param.PostSort,
 		Status:   param.Status,
-		CreateBy: user.(dto.UserTokenResponse).UserName,
+		CreateBy: user.(*dto.UserTokenResponse).UserName,
 		Remark:   param.Remark,
 	}); err != nil {
 		response.Error(ctx).SetMsg(err.Error()).Json()
@@ -87,7 +87,7 @@ func (c *PostController) Update(ctx *gin.Context) {
 		PostName: param.PostName,
 		PostSort: param.PostSort,
 		Status:   param.Status,
-		UpdateBy: user.(dto.UserTokenResponse).UserName,
+		UpdateBy: user.(*dto.UserTokenResponse).UserName,
 		Remark:   param.Remark,
 	}); err != nil {
 		response.Error(ctx).SetMsg(err.Error()).Json()

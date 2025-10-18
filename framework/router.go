@@ -32,11 +32,15 @@ type RouteGroup struct {
 	Routes       []Route
 }
 
+func registerCommonMiddlewares(server *gin.Engine) {
+	server.Use(middleware.RecoveryMiddleware())
+	server.Use(middleware.CorsMiddleware())
+}
+
 // registerRouteGroups 注册分组路由
 func registerRouteGroups(groups []RouteGroup) {
 	server := getServer()
 	rootRoute := server.Group("/api")
-	rootRoute.Use(middleware.CorsMiddleware()) // common middleware
 	for _, group := range groups {
 		g := rootRoute.Group(group.RelativePath)
 		if group.Middlewares != nil {

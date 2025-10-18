@@ -4,7 +4,6 @@ import (
 	"fmt"
 	"forum-service/framework/config"
 	"forum-service/framework/connector"
-	"log"
 	"strconv"
 	"sync"
 
@@ -27,11 +26,11 @@ func init() {
 		Port:   strconv.Itoa(conf.Server.Port),
 	}
 	once.Do(func() {
+		registerCommonMiddlewares(server.Engine)
 		connector.ConnectToMySQL()
 		connector.ConnectToRedis()
 		connector.InitializeLogger(server.Engine)
 	})
-	server.Use(gin.Recovery())
 	server.Static(conf.System.UploadPath, conf.System.UploadPath)
 }
 
@@ -50,8 +49,6 @@ func RunServer(routeGroups ...[]RouteGroup) {
 	}
 	err := server.Run(fmt.Sprintf(":%s", server.Port))
 	if err != nil {
-		log.Fatal("server run error: ", err)
-	} else {
-		log.Print("server run success")
+		panic(err)
 	}
 }

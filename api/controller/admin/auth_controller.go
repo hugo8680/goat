@@ -23,7 +23,7 @@ func NewAuthController() *AuthController {
 // GetCaptchaImage 获取验证码
 func (c *AuthController) GetCaptchaImage(ctx *gin.Context) {
 	captchaResponse := c.authService.GetCaptchaImage()
-	response.Success(ctx).SetData("data", captchaResponse).Json()
+	response.Success(ctx).SetData("uuid", captchaResponse.Uuid).SetData("img", captchaResponse.Img).SetData("captchaEnabled", captchaResponse.CaptchaEnabled).Json()
 }
 
 // Register 注册
@@ -66,7 +66,7 @@ func (c *AuthController) Login(ctx *gin.Context) {
 // GetInfo 获取授权信息
 func (c *AuthController) GetInfo(ctx *gin.Context) {
 	authInfo := c.authService.GetAuthInfo(ctx)
-	response.Success(ctx).SetData("data", authInfo).Json()
+	response.Success(ctx).SetData("user", authInfo.User).SetData("roles", authInfo.Roles).SetData("permissions", authInfo.Permissions).Json()
 }
 
 // GetRouters 获取当前用户的路由

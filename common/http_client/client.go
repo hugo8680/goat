@@ -70,7 +70,7 @@ func (r *Request) Send(requestParam *RequestParam) (string, error) {
 	defer func(Body io.ReadCloser) {
 		err := Body.Close()
 		if err != nil {
-			log.Fatal(err)
+			log.Println(err)
 		}
 	}(result.Body)
 	// 读取响应体内容，并加入缓冲区

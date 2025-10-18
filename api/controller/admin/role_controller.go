@@ -73,7 +73,7 @@ func (c *RoleController) Create(ctx *gin.Context) {
 		MenuCheckStrictly: &menuCheckStrictly,
 		DeptCheckStrictly: &deptCheckStrictly,
 		Status:            param.Status,
-		CreateBy:          user.(dto.UserTokenResponse).UserName,
+		CreateBy:          user.(*dto.UserTokenResponse).UserName,
 		Remark:            param.Remark,
 	}, param.MenuIds); err != nil {
 		response.Error(ctx).SetMsg(err.Error()).Json()
@@ -109,7 +109,7 @@ func (c *RoleController) Update(ctx *gin.Context) {
 		MenuCheckStrictly: &menuCheckStrictly,
 		DeptCheckStrictly: &deptCheckStrictly,
 		Status:            param.Status,
-		UpdateBy:          user.(dto.UserTokenResponse).UserName,
+		UpdateBy:          user.(*dto.UserTokenResponse).UserName,
 		Remark:            param.Remark,
 	}, param.MenuIds, nil); err != nil {
 		response.Error(ctx).SetMsg(err.Error()).Json()
@@ -126,7 +126,7 @@ func (c *RoleController) Delete(ctx *gin.Context) {
 		return
 	}
 	user, _ := ctx.Get(auth.CONTEXT_USER_KEY)
-	roles := c.roleService.ListByUserId(user.(dto.UserTokenResponse).UserId)
+	roles := c.roleService.ListByUserId(user.(*dto.UserTokenResponse).UserId)
 	for _, role := range roles {
 		if err = admin.RemoveRoleValidator(roleIds, role.RoleId, role.RoleName); err != nil {
 			response.Error(ctx).SetMsg(err.Error()).Json()
@@ -155,7 +155,7 @@ func (c *RoleController) ChangeStatus(ctx *gin.Context) {
 	if err := c.roleService.Update(dto.SaveRoleRequest{
 		RoleId:   param.RoleId,
 		Status:   param.Status,
-		UpdateBy: user.(dto.UserTokenResponse).UserName,
+		UpdateBy: user.(*dto.UserTokenResponse).UserName,
 	}, nil, nil); err != nil {
 		response.Error(ctx).SetMsg(err.Error()).Json()
 		return
@@ -188,7 +188,7 @@ func (c *RoleController) AssignDataScope(ctx *gin.Context) {
 		RoleId:            param.RoleId,
 		DataScope:         param.DataScope,
 		DeptCheckStrictly: &deptCheckStrictly,
-		UpdateBy:          user.(dto.UserTokenResponse).UserName,
+		UpdateBy:          user.(*dto.UserTokenResponse).UserName,
 	}, nil, param.DeptIds); err != nil {
 		response.Error(ctx).SetMsg(err.Error()).Json()
 		return
@@ -204,7 +204,7 @@ func (c *RoleController) RoleUsersAllocated(ctx *gin.Context) {
 		return
 	}
 	user, _ := ctx.Get(auth.CONTEXT_USER_KEY)
-	users, total := c.userService.ListByRoleId(param, user.(dto.UserTokenResponse).UserId, true)
+	users, total := c.userService.ListByRoleId(param, user.(*dto.UserTokenResponse).UserId, true)
 	response.Success(ctx).SetPageData(users, total).Json()
 }
 
@@ -216,7 +216,7 @@ func (c *RoleController) RoleUsersUnAllocated(ctx *gin.Context) {
 		return
 	}
 	user, _ := ctx.Get(auth.CONTEXT_USER_KEY)
-	users, total := c.userService.ListByRoleId(param, user.(dto.UserTokenResponse).UserId, false)
+	users, total := c.userService.ListByRoleId(param, user.(*dto.UserTokenResponse).UserId, false)
 	response.Success(ctx).SetPageData(users, total).Json()
 }
 

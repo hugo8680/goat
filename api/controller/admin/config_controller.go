@@ -61,7 +61,7 @@ func (c *ConfigController) Create(ctx *gin.Context) {
 		ConfigValue: param.ConfigValue,
 		ConfigType:  param.ConfigType,
 		Remark:      param.Remark,
-		CreateBy:    user.(dto.UserTokenResponse).UserName,
+		CreateBy:    user.(*dto.UserTokenResponse).UserName,
 	}); err != nil {
 		response.Error(ctx).SetMsg(err.Error()).Json()
 		return
@@ -88,7 +88,7 @@ func (c *ConfigController) Update(ctx *gin.Context) {
 		ConfigValue: param.ConfigValue,
 		ConfigType:  param.ConfigType,
 		Remark:      param.Remark,
-		UpdateBy:    user.(dto.UserTokenResponse).UserName,
+		UpdateBy:    user.(*dto.UserTokenResponse).UserName,
 	}); err != nil {
 		response.Error(ctx).SetMsg(err.Error()).Json()
 		return

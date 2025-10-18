@@ -64,7 +64,7 @@ func (c *DictDataController) Create(ctx *gin.Context) {
 		ListClass: param.ListClass,
 		IsDefault: param.IsDefault,
 		Status:    param.Status,
-		CreateBy:  user.(dto.UserTokenResponse).UserName,
+		CreateBy:  user.(*dto.UserTokenResponse).UserName,
 		Remark:    param.Remark,
 	}); err != nil {
 		response.Error(ctx).SetMsg(err.Error()).Json()
@@ -95,7 +95,7 @@ func (c *DictDataController) Update(ctx *gin.Context) {
 		ListClass: param.ListClass,
 		IsDefault: param.IsDefault,
 		Status:    param.Status,
-		UpdateBy:  user.(dto.UserTokenResponse).UserName,
+		UpdateBy:  user.(*dto.UserTokenResponse).UserName,
 		Remark:    param.Remark,
 	}); err != nil {
 		response.Error(ctx).SetMsg(err.Error()).Json()

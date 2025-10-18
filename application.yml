@@ -47,7 +47,7 @@ cache:
   password: 123456
 
 # 用户配置
-user:
+auth:
   # token配置
   token:
     # 令牌自定义标识
@@ -55,7 +55,7 @@ user:
     # 令牌密钥
     secret: abcdefghijklmnopqrstuvwxyz
     # 令牌有效期（默认30分钟）
-    expireIn: 30
+    expireIn: 10080
   password:
     # 密码最大错误次数
     maxRetryCount: 5

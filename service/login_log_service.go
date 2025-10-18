@@ -63,7 +63,7 @@ func (s *LoginLogService) Create(param dto.SaveLoginLogRequest) error {
 			}).Error
 		}()
 		if err != nil {
-			log.Fatal(err)
+			log.Println(err)
 		}
 	}()
 	return nil

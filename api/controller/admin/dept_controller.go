@@ -77,7 +77,7 @@ func (c *DeptController) Create(ctx *gin.Context) {
 		Phone:    param.Phone,
 		Email:    param.Email,
 		Status:   param.Status,
-		CreateBy: user.(dto.UserTokenResponse).UserName,
+		CreateBy: user.(*dto.UserTokenResponse).UserName,
 	}); err != nil {
 		response.Error(ctx).SetMsg(err.Error()).Json()
 		return
@@ -106,7 +106,7 @@ func (c *DeptController) Update(ctx *gin.Context) {
 		Phone:    param.Phone,
 		Email:    param.Email,
 		Status:   param.Status,
-		UpdateBy: user.(dto.UserTokenResponse).UserName,
+		UpdateBy: user.(*dto.UserTokenResponse).UserName,
 	}); err != nil {
 		response.Error(ctx).SetMsg(err.Error()).Json()
 		return
