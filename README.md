@@ -10,6 +10,7 @@
 * Gorm ^1.31.0
 
 ## 关于
+* 匹配前端项目 [goat-admin](https://github.com/hugo8680/goat-admin)
 * 项目基于 [Ruoyi-Vue项目](https://gitee.com/y_project/RuoYi-Vue)设计扩展
 * 项目基于 [Ruoyi-Go项目](https://github.com/mengxiangyu996/ruoyi-go)重构
 * 项目前端基于 [Ruoyi-Vue3](https://github.com/yangzongzhuan/RuoYi-Vue3)重构
