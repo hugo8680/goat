@@ -1,11 +1,11 @@
 package admin
 
 import (
-	"forum-service/common/serializer/datetime"
-	"forum-service/common/utils"
-	"forum-service/framework/response"
-	"forum-service/model/dto"
-	"forum-service/service"
+	"github.com/hugo8680/goat/common/serializer/datetime"
+	"github.com/hugo8680/goat/common/utils"
+	"github.com/hugo8680/goat/framework/response"
+	"github.com/hugo8680/goat/model/dto"
+	"github.com/hugo8680/goat/service/admin"
 	"regexp"
 	"strings"
 	"time"
@@ -15,12 +15,12 @@ import (
 )
 
 type LoginLogController struct {
-	loginLogService *service.LoginLogService
+	loginLogService *admin.LoginLogService
 }
 
 func NewLoginLogController() *LoginLogController {
 	return &LoginLogController{
-		loginLogService: &service.LoginLogService{},
+		loginLogService: &admin.LoginLogService{},
 	}
 }
 

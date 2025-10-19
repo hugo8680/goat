@@ -1,7 +1,7 @@
 package middleware
 
 import (
-	"forum-service/framework/response"
+	"github.com/hugo8680/goat/framework/response"
 	"log"
 	"net/http"
 

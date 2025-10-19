@@ -1,7 +1,7 @@
 package dto
 
 import (
-	"forum-service/common/serializer/datetime"
+	"github.com/hugo8680/goat/common/serializer/datetime"
 )
 
 // OperLogListResponse 操作日志列表

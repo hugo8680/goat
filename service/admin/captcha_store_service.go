@@ -1,9 +1,9 @@
-package service
+package admin
 
 import (
 	"context"
-	"forum-service/common/constant/redis_key"
-	"forum-service/framework/connector"
+	"github.com/hugo8680/goat/common/constant/redis_key"
+	"github.com/hugo8680/goat/framework/connector"
 	"time"
 )
 

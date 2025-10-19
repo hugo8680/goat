@@ -1,9 +1,9 @@
 package middleware
 
 import (
-	"forum-service/common/constant/auth"
-	"forum-service/framework/response"
-	"forum-service/service"
+	"github.com/hugo8680/goat/common/constant/auth"
+	"github.com/hugo8680/goat/framework/response"
+	"github.com/hugo8680/goat/service/admin"
 	"time"
 
 	"github.com/gin-gonic/gin"
@@ -12,8 +12,8 @@ import (
 // AdminAuthMiddleware 认证中间件
 func AdminAuthMiddleware() gin.HandlerFunc {
 	return func(ctx *gin.Context) {
-		securityService := &service.SecurityService{}
-		tokenService := service.NewTokenService()
+		securityService := &admin.SecurityService{}
+		tokenService := admin.NewTokenService()
 		authUser, err := securityService.GetCurrentUser(ctx)
 		if err != nil {
 			response.Error(ctx).SetCode(401).SetMsg("未登录").Json()

@@ -3,12 +3,12 @@ package middleware
 import (
 	"bytes"
 	"encoding/json"
-	"forum-service/common/ip"
-	"forum-service/common/response_writer"
-	"forum-service/common/serializer/datetime"
-	"forum-service/framework/response"
-	"forum-service/model/dto"
-	"forum-service/service"
+	"github.com/hugo8680/goat/common/ip"
+	"github.com/hugo8680/goat/common/response_writer"
+	"github.com/hugo8680/goat/common/serializer/datetime"
+	"github.com/hugo8680/goat/framework/response"
+	"github.com/hugo8680/goat/model/dto"
+	"github.com/hugo8680/goat/service/admin"
 	"io"
 	"time"
 
@@ -18,7 +18,7 @@ import (
 // LoginLogMiddleware 登录信息记录
 func LoginLogMiddleware() gin.HandlerFunc {
 	return func(ctx *gin.Context) {
-		loginLogService := &service.LoginLogService{}
+		loginLogService := &admin.LoginLogService{}
 		// 因读取请求体后，请求体的数据流会被消耗完毕，未避免EOF错误，需要缓存请求体，并且每次使用后需要重新赋值给ctx.Request.Body
 		bodyBytes, _ := ctx.GetRawData()
 		// 将缓存的请求体重新赋值给ctx.Request.Body，供下方ctx.ShouldBind使用

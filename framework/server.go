@@ -2,8 +2,8 @@ package framework
 
 import (
 	"fmt"
-	"forum-service/framework/config"
-	"forum-service/framework/connector"
+	"github.com/hugo8680/goat/framework/config"
+	"github.com/hugo8680/goat/framework/connector"
 	"strconv"
 	"sync"
 

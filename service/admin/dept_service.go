@@ -1,10 +1,10 @@
-package service
+package admin
 
 import (
 	"errors"
-	"forum-service/framework/connector"
-	"forum-service/model"
-	"forum-service/model/dto"
+	"github.com/hugo8680/goat/framework/connector"
+	"github.com/hugo8680/goat/model"
+	"github.com/hugo8680/goat/model/dto"
 	"strconv"
 )
 

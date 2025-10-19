@@ -1,16 +1,16 @@
 package admin
 
 import (
-	"forum-service/api/validator/admin"
-	"forum-service/common/constant/auth"
-	"forum-service/common/password"
-	"forum-service/common/serializer/datetime"
-	"forum-service/common/uploader"
-	"forum-service/common/utils"
-	"forum-service/framework/config"
-	"forum-service/framework/response"
-	"forum-service/model/dto"
-	"forum-service/service"
+	"github.com/hugo8680/goat/api/validator/admin"
+	"github.com/hugo8680/goat/common/constant/auth"
+	"github.com/hugo8680/goat/common/password"
+	"github.com/hugo8680/goat/common/serializer/datetime"
+	"github.com/hugo8680/goat/common/uploader"
+	"github.com/hugo8680/goat/common/utils"
+	"github.com/hugo8680/goat/framework/config"
+	"github.com/hugo8680/goat/framework/response"
+	"github.com/hugo8680/goat/model/dto"
+	adminService "github.com/hugo8680/goat/service/admin"
 	"io"
 	"os"
 	"strconv"
@@ -23,21 +23,21 @@ import (
 )
 
 type UserController struct {
-	userService   *service.UserService
-	deptService   *service.DeptService
-	roleService   *service.RoleService
-	postService   *service.PostService
-	configService *service.ConfigService
+	userService   *adminService.UserService
+	deptService   *adminService.DeptService
+	roleService   *adminService.RoleService
+	postService   *adminService.PostService
+	configService *adminService.ConfigService
 	setting       *config.Setting
 }
 
 func NewUserController() *UserController {
 	return &UserController{
-		userService:   &service.UserService{},
-		deptService:   &service.DeptService{},
-		roleService:   &service.RoleService{},
-		postService:   &service.PostService{},
-		configService: &service.ConfigService{},
+		userService:   &adminService.UserService{},
+		deptService:   &adminService.DeptService{},
+		roleService:   &adminService.RoleService{},
+		postService:   &adminService.PostService{},
+		configService: &adminService.ConfigService{},
 		setting:       config.GetSetting(),
 	}
 }

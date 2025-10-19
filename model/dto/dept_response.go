@@ -1,7 +1,7 @@
 package dto
 
 import (
-	"forum-service/common/serializer/datetime"
+	"github.com/hugo8680/goat/common/serializer/datetime"
 )
 
 // DeptListResponse 部门列表

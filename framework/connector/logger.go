@@ -2,7 +2,7 @@ package connector
 
 import (
 	"fmt"
-	"forum-service/common/serializer/datetime"
+	"github.com/hugo8680/goat/common/serializer/datetime"
 	"time"
 
 	"github.com/gin-gonic/gin"

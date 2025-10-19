@@ -1,8 +1,8 @@
 package main
 
 import (
-	"forum-service/framework"
-	"forum-service/route"
+	"github.com/hugo8680/goat/framework"
+	"github.com/hugo8680/goat/route"
 )
 
 func main() {

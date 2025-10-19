@@ -1,10 +1,10 @@
 package route
 
 import (
-	"forum-service/api/controller/admin"
-	"forum-service/common/constant/log_request_type"
-	"forum-service/framework"
-	"forum-service/middleware"
+	"github.com/hugo8680/goat/api/controller/admin"
+	"github.com/hugo8680/goat/common/constant/log_request_type"
+	"github.com/hugo8680/goat/framework"
+	"github.com/hugo8680/goat/middleware"
 
 	"github.com/gin-gonic/gin"
 )
@@ -716,35 +716,35 @@ func DefaultRoutes() []framework.RouteGroup {
 				},
 				{
 					Method:       "GET",
-					RelativePath: "/system/operlog/list",
+					RelativePath: "/system/operLog/list",
 					Middlewares: gin.HandlersChain{
-						middleware.PermissionCheckMiddleware("system:operlog:list"),
+						middleware.PermissionCheckMiddleware("system:operLog:list"),
 					},
 					Function: admin.NewOperLogController().List,
 				},
 				{
 					Method:       "DELETE",
-					RelativePath: "/system/operlog/:operIds",
+					RelativePath: "/system/operLog/:operIds",
 					Middlewares: gin.HandlersChain{
-						middleware.PermissionCheckMiddleware("system:operlog:remove"),
+						middleware.PermissionCheckMiddleware("system:operLog:remove"),
 						middleware.OperLogMiddleware("删除操作日志", log_request_type.REQUEST_BUSINESS_TYPE_DELETE),
 					},
 					Function: admin.NewOperLogController().Delete,
 				},
 				{
 					Method:       "DELETE",
-					RelativePath: "/system/operlog/clean",
+					RelativePath: "/system/operLog/clean",
 					Middlewares: gin.HandlersChain{
-						middleware.PermissionCheckMiddleware("system:operlog:remove"),
+						middleware.PermissionCheckMiddleware("system:operLog:remove"),
 						middleware.OperLogMiddleware("清空操作日志", log_request_type.REQUEST_BUSINESS_TYPE_DELETE),
 					},
 					Function: admin.NewOperLogController().Clean,
 				},
 				{
 					Method:       "POST",
-					RelativePath: "/system/operlog/export",
+					RelativePath: "/system/operLog/export",
 					Middlewares: gin.HandlersChain{
-						middleware.PermissionCheckMiddleware("system:operlog:export"),
+						middleware.PermissionCheckMiddleware("system:operLog:export"),
 						middleware.OperLogMiddleware("导出操作日志", log_request_type.REQUEST_BUSINESS_TYPE_EXPORT),
 					},
 					Function: admin.NewOperLogController().Export,

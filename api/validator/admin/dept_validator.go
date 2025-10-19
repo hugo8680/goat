@@ -2,7 +2,7 @@ package admin
 
 import (
 	"errors"
-	"forum-service/model/dto"
+	"github.com/hugo8680/goat/model/dto"
 )
 
 // CreateDeptValidator 添加部门验证

@@ -1,14 +1,14 @@
-package service
+package admin
 
 import (
 	"context"
 	"errors"
-	"forum-service/common/constant/redis_key"
-	"forum-service/common/serializer/datetime"
-	"forum-service/common/uuid"
-	"forum-service/framework/config"
-	"forum-service/framework/connector"
-	"forum-service/model/dto"
+	"github.com/hugo8680/goat/common/constant/redis_key"
+	"github.com/hugo8680/goat/common/serializer/datetime"
+	"github.com/hugo8680/goat/common/uuid"
+	"github.com/hugo8680/goat/framework/config"
+	"github.com/hugo8680/goat/framework/connector"
+	"github.com/hugo8680/goat/model/dto"
 	"strings"
 	"time"
 

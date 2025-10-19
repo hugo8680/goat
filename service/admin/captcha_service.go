@@ -1,4 +1,4 @@
-package service
+package admin
 
 import (
 	"github.com/mojocn/base64Captcha"

@@ -1,23 +1,23 @@
 package admin
 
 import (
-	"forum-service/api/validator/admin"
-	"forum-service/common/constant/auth"
-	"forum-service/framework/response"
-	"forum-service/model/dto"
-	"forum-service/service"
+	"github.com/hugo8680/goat/api/validator/admin"
+	"github.com/hugo8680/goat/common/constant/auth"
+	"github.com/hugo8680/goat/framework/response"
+	"github.com/hugo8680/goat/model/dto"
+	adminService "github.com/hugo8680/goat/service/admin"
 	"strconv"
 
 	"github.com/gin-gonic/gin"
 )
 
 type MenuController struct {
-	menuService *service.MenuService
+	menuService *adminService.MenuService
 }
 
 func NewMenuController() *MenuController {
 	return &MenuController{
-		menuService: &service.MenuService{},
+		menuService: &adminService.MenuService{},
 	}
 }
 

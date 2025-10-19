@@ -1,22 +1,22 @@
 package admin
 
 import (
-	"forum-service/api/validator/admin"
-	"forum-service/framework/response"
-	"forum-service/model/dto"
-	"forum-service/service"
+	"github.com/hugo8680/goat/api/validator/admin"
+	"github.com/hugo8680/goat/framework/response"
+	"github.com/hugo8680/goat/model/dto"
+	adminService "github.com/hugo8680/goat/service/admin"
 
 	"github.com/gin-gonic/gin"
 )
 
 type AuthController struct {
-	authService *service.AuthService
+	authService *adminService.AuthService
 }
 
 // NewAuthController 构造函数
 func NewAuthController() *AuthController {
 	return &AuthController{
-		authService: &service.AuthService{},
+		authService: &adminService.AuthService{},
 	}
 }
 

@@ -1,13 +1,13 @@
 # 项目相关配置
 system:
   # 名称
-  name: forum
+  name: goat
   # 版本
   version: 0.0.1
   # 域名
   host: http://localhost:3000
   # 文件上传路径
-  uploadPath: /Users/cheunghugo/forum-files/
+  uploadPath: /Users/cheunghugo/goat-files/
 
 # 开发环境配置
 server:
@@ -23,7 +23,7 @@ db:
   # 端口，默认为3306
   port: 3306
   # 数据库名称
-  database: forum
+  database: goat
   # 用户名
   username: root
   # 密码

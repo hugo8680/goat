@@ -1,7 +1,7 @@
 package redis_key
 
 import (
-	"forum-service/framework/config"
+	"github.com/hugo8680/goat/framework/config"
 )
 
 var prefix = config.GetSetting().System.Name

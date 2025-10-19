@@ -1,7 +1,7 @@
 package framework
 
 import (
-	"forum-service/middleware"
+	"github.com/hugo8680/goat/middleware"
 
 	"github.com/gin-gonic/gin"
 )

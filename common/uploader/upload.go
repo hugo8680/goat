@@ -3,8 +3,8 @@ package uploader
 import (
 	"encoding/base64"
 	"errors"
-	"forum-service/common/serializer/datetime"
-	"forum-service/framework/config"
+	"github.com/hugo8680/goat/common/serializer/datetime"
+	"github.com/hugo8680/goat/framework/config"
 	"math/rand"
 	"net/textproto"
 	"os"

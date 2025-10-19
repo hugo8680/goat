@@ -2,9 +2,9 @@ package admin
 
 import (
 	"errors"
-	"forum-service/common/constant/menu_key"
-	"forum-service/common/utils"
-	"forum-service/model/dto"
+	"github.com/hugo8680/goat/common/constant/menu_key"
+	"github.com/hugo8680/goat/common/utils"
+	"github.com/hugo8680/goat/model/dto"
 	"strings"
 )
 

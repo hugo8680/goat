@@ -1,4 +1,4 @@
-module forum-service
+module github.com/hugo8680/goat
 
 go 1.25
 

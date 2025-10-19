@@ -1,8 +1,8 @@
-package service
+package admin
 
 import (
 	"errors"
-	"forum-service/model/dto"
+	"github.com/hugo8680/goat/model/dto"
 
 	"github.com/gin-gonic/gin"
 )

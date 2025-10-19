@@ -2,9 +2,9 @@ package admin
 
 import (
 	"errors"
-	"forum-service/common/constant/regexp"
-	"forum-service/common/utils"
-	"forum-service/model/dto"
+	"github.com/hugo8680/goat/common/constant/regexp"
+	"github.com/hugo8680/goat/common/utils"
+	"github.com/hugo8680/goat/model/dto"
 )
 
 // UpdateProfileValidator 更新个人资料验证

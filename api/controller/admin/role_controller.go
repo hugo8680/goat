@@ -1,13 +1,13 @@
 package admin
 
 import (
-	"forum-service/api/validator/admin"
-	"forum-service/common/constant/auth"
-	"forum-service/common/serializer/datetime"
-	"forum-service/common/utils"
-	"forum-service/framework/response"
-	"forum-service/model/dto"
-	"forum-service/service"
+	"github.com/hugo8680/goat/api/validator/admin"
+	"github.com/hugo8680/goat/common/constant/auth"
+	"github.com/hugo8680/goat/common/serializer/datetime"
+	"github.com/hugo8680/goat/common/utils"
+	"github.com/hugo8680/goat/framework/response"
+	"github.com/hugo8680/goat/model/dto"
+	adminService "github.com/hugo8680/goat/service/admin"
 	"strconv"
 	"time"
 
@@ -16,16 +16,16 @@ import (
 )
 
 type RoleController struct {
-	roleService *service.RoleService
-	deptService *service.DeptService
-	userService *service.UserService
+	roleService *adminService.RoleService
+	deptService *adminService.DeptService
+	userService *adminService.UserService
 }
 
 func NewRoleController() *RoleController {
 	return &RoleController{
-		roleService: &service.RoleService{},
-		deptService: &service.DeptService{},
-		userService: &service.UserService{},
+		roleService: &adminService.RoleService{},
+		deptService: &adminService.DeptService{},
+		userService: &adminService.UserService{},
 	}
 }
 

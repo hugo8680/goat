@@ -2,7 +2,7 @@ package connector
 
 import (
 	"context"
-	"forum-service/framework/config"
+	"github.com/hugo8680/goat/framework/config"
 	"strconv"
 
 	"github.com/go-redis/redis/v8"

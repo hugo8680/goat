@@ -2,8 +2,8 @@ package ip
 
 import (
 	"encoding/json"
-	"forum-service/common/http_client"
-	"forum-service/common/utils"
+	"github.com/hugo8680/goat/common/http_client"
+	"github.com/hugo8680/goat/common/utils"
 	"net"
 
 	"github.com/mileusna/useragent"

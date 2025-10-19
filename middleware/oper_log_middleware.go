@@ -3,12 +3,12 @@ package middleware
 import (
 	"bytes"
 	"encoding/json"
-	"forum-service/common/ip"
-	"forum-service/common/response_writer"
-	"forum-service/common/serializer/datetime"
-	"forum-service/framework/response"
-	"forum-service/model/dto"
-	"forum-service/service"
+	"github.com/hugo8680/goat/common/ip"
+	"github.com/hugo8680/goat/common/response_writer"
+	"github.com/hugo8680/goat/common/serializer/datetime"
+	"github.com/hugo8680/goat/framework/response"
+	"github.com/hugo8680/goat/model/dto"
+	"github.com/hugo8680/goat/service/admin"
 	"io"
 	"log"
 	"time"
@@ -22,8 +22,8 @@ import (
 // businessType 操作类型 constant.REQUEST_BUSINESS_TYPE_*
 func OperLogMiddleware(title string, businessType int) gin.HandlerFunc {
 	return func(ctx *gin.Context) {
-		securityService := &service.SecurityService{}
-		operLogService := &service.OperLogService{}
+		securityService := &admin.SecurityService{}
+		operLogService := &admin.OperLogService{}
 		var operName, deptName string
 		if authUser, _ := securityService.GetCurrentUser(ctx); authUser != nil {
 			operName = authUser.NickName

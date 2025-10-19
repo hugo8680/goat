@@ -2,7 +2,7 @@ package admin
 
 import (
 	"errors"
-	"forum-service/model/dto"
+	"github.com/hugo8680/goat/model/dto"
 )
 
 // CreatePostValidator 添加岗位验证

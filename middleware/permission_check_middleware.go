@@ -1,8 +1,8 @@
 package middleware
 
 import (
-	"forum-service/framework/response"
-	"forum-service/service"
+	"github.com/hugo8680/goat/framework/response"
+	"github.com/hugo8680/goat/service/admin"
 
 	"github.com/gin-gonic/gin"
 )
@@ -10,7 +10,7 @@ import (
 // PermissionCheckMiddleware 验证用户是否具备某权限
 func PermissionCheckMiddleware(perm string) gin.HandlerFunc {
 	return func(ctx *gin.Context) {
-		securityService := &service.SecurityService{}
+		securityService := &admin.SecurityService{}
 		authUserId, _ := securityService.GetCurrentUserId(ctx)
 		if authUserId == 1 {
 			ctx.Next()

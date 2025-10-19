@@ -2,8 +2,8 @@ package admin
 
 import (
 	"errors"
-	"forum-service/common/utils"
-	"forum-service/model/dto"
+	"github.com/hugo8680/goat/common/utils"
+	"github.com/hugo8680/goat/model/dto"
 )
 
 // CreateRoleValidator 添加角色验证
